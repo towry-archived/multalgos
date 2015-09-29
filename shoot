@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+name = ARGV.first
+
+if name.nil?
+  puts "[ERROR] => argument is missing"
+  exit
+end
+
+if name =~/\//
+  puts "[ERROR] => Invalid argument"
+  exit
+end
+
+now = Time.now.strftime('%Y%m%d')
+if not Dir.exists? File.join(Dir.pwd, name)
+  FileUtils.mkdir_p File.join(Dir.pwd, name)
+end
+
+if not Dir.exists? File.join(Dir.pwd, name, "#{name}_#{now}")
+  FileUtils.mkdir_p File.join(Dir.pwd, name, "#{name}_#{now}")
+  puts "[OK] => Created folder: " + File.expand_path(File.join(Dir.pwd, name, "#{name}_#{now}"))
+else
+  puts "[OK] => Target is already exists"
+end
