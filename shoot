@@ -22,6 +22,9 @@ end
 if not Dir.exists? File.join(Dir.pwd, name, "#{name}_#{now}")
   FileUtils.mkdir_p File.join(Dir.pwd, name, "#{name}_#{now}")
   puts "[OK] => Created folder: " + File.expand_path(File.join(Dir.pwd, name, "#{name}_#{now}"))
+  FileUtils.touch File.join(Dir.pwd, name, "#{name}_#{now}/#{name}.cc")
+  FileUtils.touch File.join(Dir.pwd, name, "#{name}_#{now}/#{name}_test.cc")
+  puts "[OK] => Created file: " + File.join(Dir.pwd, name, "#{name}_#{now}/#{name}[_test].cc")
 else
   puts "[OK] => Target is already exists"
 end
